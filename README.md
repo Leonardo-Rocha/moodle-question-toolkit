@@ -18,6 +18,8 @@ Uma vez com a marcação os arquivos txt podem ser convertidos para outros forma
 
 [ ]  Conversão para *GIFT*
 
+[ ]  Interface Gráfica
+
 [ ]  Automação da marcação
 
 [ ]  Multithreading
