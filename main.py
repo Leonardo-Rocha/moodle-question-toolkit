@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 from typing import List 
 
 # MUST IMPORT \usepackage{enumitem}
@@ -12,7 +13,7 @@ def convert_to_tex(filename: str):
   output_file = open(converted_filename, "w")
   output_list = []
 
-  # filename = "provas/Enade/CC_2005/CIENCIA_DA_COMPUTACAO_Prova2005-utf8.txt"
+  # filename = "provas/Enade/CC_2005/CC_2005_Marcado.txt"
   paths = re.split("/", filename)
   test_type = paths[1] if len(paths) >= 1 else 'ENADE' 
   test_year = paths[2].split('_')[1] if len(paths) >= 2 else 'ANO'
@@ -116,12 +117,13 @@ def convert_to_tex(filename: str):
 def convert_to_GIFT():
   print("Converting to GIFT...")
 
-
+def is_64bits():
+  return sys.maxsize > 2**32
+  
 def main():
   # test = "provas/Enade/CC_2005/CIENCIA_DA_COMPUTACAO_Prova2005.pdf"
 
   # TODO: fazer download da versão mais recente do xpdf-tools pelo site.
-  # TODO: descobrir o OS se é x64 ou x86
   #os.system(f"./xpdf-tools-linux-4.03/bin64/pdftotext -raw {test}")
   #os.system(f"mkdir $PWD/provas/Enade/CC_2005/CIENCIA_DA_COMPUTACAO_Prova2005_figuras")
   #os.system(f"./xpdf-tools-linux-4.03/bin64/pdfimages -j {test} $PWD/provas/Enade/CC_2005/CIENCIA_DA_COMPUTACAO_Prova2005_figuras/fig")
