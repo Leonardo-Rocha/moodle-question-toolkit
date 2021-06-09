@@ -10,6 +10,9 @@ Uma vez com a marcação os arquivos txt podem ser convertidos para outros forma
 
 ## TODO List : Objetivos de Implementação
 [ ]  Conversão para *.tex*
+
 [ ]  Conversão para *GIFT*
+
 [ ]  Automação da marcação
+
 [ ]  Multithreading
