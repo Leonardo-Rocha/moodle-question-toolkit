@@ -9,6 +9,11 @@ imagens inserindo ![Texto Alternativo](fig-(número da imagem).jpg "Titulo").
 Uma vez com a marcação os arquivos txt podem ser convertidos para outros formatos, no momento estamos desenvolvendo o formato *.tex* mas no futuro será possível converter para outros como  o *GIFT*.
 
 ## TODO List : Objetivos de Implementação
+
+[ ]  Conversão de Equações
+
+[ ]  Integração com as Imagens
+
 [ ]  Conversão para *.tex*
 
 [ ]  Conversão para *GIFT*
