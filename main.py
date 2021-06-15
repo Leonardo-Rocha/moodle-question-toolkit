@@ -8,17 +8,18 @@ def convert_to_tex(filename: str):
   # equação -> $equation$
   print("Converting to TeX...")
   
-  preamble_filename = 'provas/preamble.tex'
+  preamble_filename = 'preamble.tex'
   converted_filename = filename.replace(".txt", ".tex")
   output_file = open(converted_filename, "w")
   output_list = []
 
-  # filename = "provas/Enade/CC_2005/CC_2005_Marcado.txt"
   paths = re.split("/", filename)
-  test_type = paths[1] if len(paths) >= 1 else 'ENADE' 
-  test_year = paths[2].split('_')[1] if len(paths) >= 2 else 'ANO'
-  test_course = paths[2].split('_')[0] if len(paths) >= 2 else 'CURSO'
-  document_title = f"\\LARGE \\textbf{{Prova {test_type} {test_year}\\\{test_course} \\\}}"
+  
+
+  test_type = paths[1] if len(paths) >= 2 else 'ENADE' 
+  test_year = paths[2].split('_')[1] if len(paths) >= 3 else 'ANO'
+  test_course = paths[2].split('_')[0] if len(paths) >= 3 else 'CURSO'
+  document_title = f"\\LARGE \\textbf{{Prova {test_type} {test_year}\\\ {test_course} \\\}}"
 
   with open(preamble_filename) as file:
     lines = file.readlines()
@@ -76,8 +77,9 @@ def convert_to_tex(filename: str):
         string_to_append = ""
         # remove -a.
         string_to_append = re.sub(alternative_regex, "", line)
-        line = lines[index + 1]
-        index += 1
+        if (index < ((len(lines) - 1))):
+          line = lines[index + 1]
+          index += 1
         while index < (len(lines) - 1) and not re.match(alternative_regex, lines[index + 1]) and not re.match(question_regex, line):
           string_to_append += line
           line = lines[index + 1]
@@ -93,6 +95,10 @@ def convert_to_tex(filename: str):
           
         # substitute \n for whitespace
         string_to_append = re.sub("(\n)", " ", string_to_append)
+        # substitute _ for \_
+        string_to_append = re.sub("_", "(\_)", string_to_append)
+        # substitute % for %%
+        string_to_append = re.sub("%", "%%", string_to_append)
         output_list.append(f"\t\t\\item {string_to_append}\n")
 
         if should_close_enumerate:
