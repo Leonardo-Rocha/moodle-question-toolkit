@@ -10,7 +10,7 @@ Uma vez com a marcação os arquivos txt podem ser convertidos para outros forma
 
 ## TODO List : Objetivos de Implementação
 
-[ ]  Conversão de Equações
+[x]  Conversão de Equações
 
 [ ]  Integração com as Imagens
 
