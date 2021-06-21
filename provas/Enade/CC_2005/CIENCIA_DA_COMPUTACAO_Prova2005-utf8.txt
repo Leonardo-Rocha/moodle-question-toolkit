@@ -1,4 +1,4 @@
-ENADE – 2005 Área: COMPUTAÇÃO 1
+ENADE – 2005 Área: COMPUTAÇÃO 1
 FORMAÇÃO GERAL
 #Q1
 Está em discussão, na sociedade brasileira, a possibilidade de uma
@@ -80,7 +80,7 @@ terrorismo.
 entre os países.
 -e. A intolerância gera medo e insegurança criando condições
 para o terrorismo.
-ENADE – 2005 Área: COMPUTAÇÃO 2
+
 #Q4
 ![tira1](fig-0002.jpg "Laerte. O condomínio.")
 ![tira2](fig-0003.jpg "Laerte. O condomínio.")
@@ -112,7 +112,7 @@ representada por:
 -e. educação e cultura / educação assistemática.
 Laerte. O condomínio.
 Laerte. O condomínio.
-ENADE – 2005 Área: COMPUTAÇÃO 3
+
 Colecção Roberto Marinho. Seis décadas da arte moderna
 brasileira. Lisboa: Fundação Calouste Gulbenkian, 1989. p. 53.
 #Q6
@@ -176,7 +176,7 @@ enfim, das casaronas de alma fêmea.
 João Cabral Melo Neto. Obra completa. Rio
 de Janeiro: Nova Aguilar, 1994, p. 343.
 La Vanguardia, 4/12/2004.
-ENADE – 2005 Área: COMPUTAÇÃO 4
+
 JB Ecológico. JB, Ano 4, n.º 41, jun./2005, p.21.
 #Q8
 ![JB Ecológico.](fig-0006.jpg "JB Ecológico. JB, Ano 4, n.º 41, jun./2005, p.21.")
@@ -219,7 +219,7 @@ RASCUNHO
 8
 9
 10
-ENADE – 2005 Área: COMPUTAÇÃO 5
+
 #Q9
 Nos dias atuais, as novas tecnologias se desenvolvem de forma acelerada e a Internet ganha papel importante
 na dinâmica do cotidiano das pessoas e da economia mundial. No entanto, as conquistas tecnológicas, ainda que
@@ -264,7 +264,7 @@ item a) RASCUNHO
 9
 10
 Acesso à Internet
-ENADE – 2005 Área: COMPUTAÇÃO 6
+
 item b) RASCUNHO
 1
 2
@@ -300,7 +300,7 @@ RASCUNHO
 8
 9
 10
-ENADE – 2005 Área: COMPUTAÇÃO 7
+
 1. As questões de 11 a 40, a seguir, distribuídas de acordo com o quadro abaixo, são
 específicas para os estudantes de cursos com perfil de Bacharelado em Sistemas de
 Informação. Os demais estudantes deverão passar para a questão de número 41.
@@ -391,7 +391,7 @@ Estão certos apenas os itens
 -c. II e IV.
 -d. I, III e IV.
 -e. II, III e IV.
-ENADE – 2005 Área: COMPUTAÇÃO 8
+
 #Q14
 Os proprietários de um teatro necessitam de uma
 ferramenta de software para reserva de lugares.
@@ -509,7 +509,7 @@ Assinale a opção correta.
 -c. Apenas os itens I e III estão certos.
 -d. Apenas os itens II e III estão certos.
 -e. Todos os itens estão certos.
-ENADE – 2005 Área: COMPUTAÇÃO 9
+
 #Q19
 Julgue os itens seguintes.
 I \((\forall x P(x)) \vee (\forall x \neg P(x)) \) é uma sentença válida porque existe
@@ -616,7 +616,7 @@ Esse processo decisório classifica-se na abordagem
 -c. política.
 -d. do incrementalismo.
 -e. do componente subjetivo.
-ENADE – 2005 Área: COMPUTAÇÃO 10
+
 #Q25
 Entre os aspectos importantes relativos à segurança de sistemas
 de informação, inclui-se
@@ -706,7 +706,7 @@ referido sistema bancário?
 -c. Distributividade.
 -d. Consistência.
 -e. Durabilidade.
-ENADE – 2005 Área: COMPUTAÇÃO 11
+
 #Q30
 O desenvolvimento global de software GSD — global
 software development — tem-se firmado como uma das
@@ -832,7 +832,7 @@ Assinale a opção correta.
 -c. Apenas os itens I e III estão certos.
 -d. Apenas os itens II e III estão certos.
 -e. Todos os itens estão certos.
-ENADE – 2005 Área: COMPUTAÇÃO 12
+
 #Q35
 Uma empresa tem a sua sede em Natal e filiais em Brasília e
 Florianópolis. Em cada cidade, a empresa possui computadores que
@@ -947,7 +947,7 @@ Estão certos apenas os itens
 -c. II e III.
 -d. III e IV.
 -e. IV e V.
-ENADE – 2005 Área: COMPUTAÇÃO 13
+
 #Q39
 ![arvore39](fig-0015.jpg " ")
 Tendo como base a árvore acima, faça o que se pede nos itens a seguir.
@@ -960,7 +960,7 @@ obtida após a realização das seguintes operações: inserir um nó de valor 2
 item a) RASCUNHO
 item b) RASCUNHO
 item c) RASCUNHO
-ENADE – 2005 Área: COMPUTAÇÃO 14
+
 #Q40
 Considere um sistema de locação de filmes em que um cliente solicita a locação de alguns filmes em DVD e após ter-se
 identificado ao funcionário e escolhido os filmes, ele os leva para casa, sabendo dos prazos de devolução de cada filme e do
@@ -993,7 +993,7 @@ item c) RASCUNHO
 8
 9
 10
-ENADE – 2005 Área: COMPUTAÇÃO 15
+
 1. A seguir são apresentadas questões objetivas e discursivas distribuídas do seguinte modo:
 PERFIL DO CURSO
 NÚMERO DAS QUESTÕES
@@ -1068,7 +1068,7 @@ para a interconexão entre as máquinas, podem ser utilizados
 equipamentos comuns usados em uma rede local de
 computadores, ao passo que um sistema SMP exige conexões
 extras no barramento e gabinetes especiais.
-ENADE – 2005 Área: COMPUTAÇÃO 16
+
 #Q43
 No processo de pesquisa binária em um vetor ordenado, os
 números máximos de comparações necessárias para se
@@ -1172,7 +1172,7 @@ Estão certos apenas os itens
 -c. II e III.
 -d. II e IV.
 -e. III e IV.
-ENADE – 2005 Área: COMPUTAÇÃO 17
+
 #Q48
 ![questao48](fig-0017.jpg " ")
 Considerando o diagrama de Hasse apresentado acima,
@@ -1265,7 +1265,7 @@ Assinale a opção correta.
 -c. Apenas os itens I e III estão certos.
 -d. Apenas os itens II e III estão certos.
 -e. Todos os itens estão certos.
-ENADE – 2005 Área: COMPUTAÇÃO 18
+
 #Q53
 O problema do buffer limitado de tamanho N é um
 problema clássico de sincronização de processos: um grupo de
@@ -1333,7 +1333,7 @@ n
 -e. O (n )
 3
 RASCUN H O
-ENADE – 2005 Área: COMPUTAÇÃO 19
+
 #Q55
 O grande desejo de todos os desenvolvedores de programas é utilizar quantidades ilimitadas de memória que, por sua vez,
 seja extremamente rápida. Infelizmente, isso não corresponde à realidade, como tenta representar a figura abaixo, que descreve
@@ -1367,7 +1367,7 @@ item b) RASCUNHO
 8
 9
 10
-ENADE – 2005 Área: COMPUTAÇÃO 20
+
 As questões de 56 a 70, a seguir, são específicas para os estudantes de cursos com perfil profissional de
 BACHARELADO EM CIÊNCIA DA COMPUTAÇÃO
 #Q56
@@ -1469,7 +1469,7 @@ T1
 4 leitura(Y);
 5 Y = Y + 100;
 6 escrita (Y);
-ENADE – 2005 Área: COMPUTAÇÃO 21
+
 #Q59
 Considere o seguinte esquema relacional para o banco de dados de um grande banco com cobertura nacional.
 AGENCIAS(NOME_AGENCIA, CIDADE_AGENCIA, FUNDOS);
@@ -1494,10 +1494,9 @@ o melhor plano de avaliação de consultas para a consulta apresentada acima.
 -c.	![questao59C](fig-0024.jpg " ")
 -d.	![questao59D](fig-0025.jpg " ")
 -e.	![questao59E](fig-0026.jpg " ")
-ENADE – 2005 Área: COMPUTAÇÃO 22
-I
-II
+
 #Q60
+
 ![questao60](fig-0029.jpg " ")
 
 Considere o circuito combinacional ilustrado acima, que apresenta
@@ -1546,7 +1545,7 @@ imagem II envolve a aplicação de
 -c. reamostragem.
 -d. filtro passa-altas.
 -e. compressão.
-ENADE – 2005 Área: COMPUTAÇÃO 23
+
 #Q63
 estado
 símbolo
@@ -1671,13 +1670,14 @@ Estão certos apenas os trechos
 -c. I, II e III.
 -d. I, III e IV.
 -e. II, III e IV.
-ENADE – 2005 Área: COMPUTAÇÃO 24
+
+#Q67
 Observe os gráficos a seguir para responder à questão 67.
 ![questao67A](fig-0033.jpg "Participação de imposto do setor de TI no PIB versus índice de pirataria")
 ![questao67B](fig-0031.jpg " ")
 ![questao67CA](fig-0032.jpg " ")
 Informações obtidas no Relatório Oficial da ABES e BSA, 2005.
-#Q67
+
 A redução da pirataria de software no Brasil e no mundo
 é resultado de esforços advindos da iniciativa privada e das
 entidades representativas do setor. Um estudo objetivando
@@ -1701,10 +1701,7 @@ Estão certos apenas os itens
 -c. II e IV.
 -d. III e V.
 -e. IV e V.
-RASCUN H O
-Participação de imposto do setor de TI no PIB
-versus índice de pirataria
-ENADE – 2005 Área: COMPUTAÇÃO 25
+
 #Q68
 Suponha que uma empresa esteja projetando um protocolo de
 transporte orientado a conexão. Suponha, ainda, que os projetistas
@@ -1782,7 +1779,7 @@ Estão certos apenas os itens
 -c. II, IV, V, VIII, IX e X.
 -d. III, V, VI, VII, VIII e IX.
 -e. III, IV, V, VII, VIII e IX.
-ENADE – 2005 Área: COMPUTAÇÃO 26
+
 #Q70
 ![questao70a](fig-0040.jpg " ")
 
@@ -1815,7 +1812,7 @@ RASCUNHO
 b) reconhecer números no alfabeto romano correspondentes aos números de 1 a 500 no alfabeto arábico, com no máximo oito
 estados. (valor: 5,0 pontos)
 RASCUNHO
-ENADE – 2005 Área: COMPUTAÇÃO 27
+
 As questões de 71 a 85, a seguir, são específicas para os estudantes de cursos com perfil profissional de
 ENGENHARIA DE COMPUTAÇÃO
 #Q71
@@ -1961,7 +1958,7 @@ para classificação e predição.
 -e. O número de camadas ocultas de uma rede de alimentação
 direta é inversamente proporcional ao aumento do espaço de
 hipóteses que ela pode representar.
-ENADE – 2005 Área: COMPUTAÇÃO 28
+
 #Q75
 Um engenheiro de uma companhia fabricante de
 memórias semicondutoras estudou o comportamento
@@ -2075,7 +2072,7 @@ Assinale a opção correta.
 -c. Apenas os itens I e II estão certos.
 -d. Apenas os itens I e III estão certos.
 -e. Apenas os itens II e III estão certos.
-ENADE – 2005 Área: COMPUTAÇÃO 29
+
 #Q79
 xpto( [ ], R, R ).
 xpto( [H | T1], Y, [H | T2] ) :- xpto( T1, Y, T2 ).
@@ -2175,7 +2172,7 @@ tecnologia.
 255 escravos.
 -e. Um dispositivo pode participar, simultaneamente, de duas
 piconets, desde que ele seja mestre em ambas.
-ENADE – 2005 Área: COMPUTAÇÃO 30
+
 #Q84
 Considere que uma empresa esteja projetando um protocolo da camada de rede. Considere, ainda, que a equipe de projeto tenha
 proposto o seguinte conjunto de requisitos.
@@ -2227,7 +2224,7 @@ item b) RASCUNHO
 8
 9
 10
-QUESTIONÁRIO DE PERCEPÇÃO SOBRE A PROVA
+QUESTIONÁRIO DE PERCEPÇÃO SOBRE A PROVA
 As questões a seguir visam obter a sua opinião a respeito da qualidade e da adequação da prova que você acabou
 de realizar. Escolha, em cada uma delas, a opção que melhor reflete a sua opinião. Use os espaços reservados na folha
 de respostas para as suas marcações.
@@ -2296,4 +2293,3 @@ aprendeu.
 -c. Entre duas e três horas.
 -d. Entre três e quatro horas.
 -e. Usei as quatro horas e não consegui terminar.
-

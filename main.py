@@ -3,12 +3,12 @@ import sys
 from typing import List
 
 def parse_tex_string(lines: List[str], index: int, is_equation_open: bool, 
-                      paths: List[str], output_list: List):
+                      paths: List[str]):
   escape_tex_special_symbols(lines, index)
-  parse_tex_image(lines, index, paths, output_list)
+  image_to_add = parse_tex_image(lines, index, paths)
   is_equation_open = parse_tex_equation(lines, index, is_equation_open)
   
-  return is_equation_open
+  return is_equation_open, image_to_add
 
 
 def escape_tex_special_symbols(lines: List[str], index: int):
@@ -41,26 +41,29 @@ def parse_tex_equation(lines: List[str], index: int, is_equation_open: bool):
   return is_equation_open
 
 
-def parse_tex_image(lines: List[str], index: int, paths: List[str], output_list: List):
+def parse_tex_image(lines: List[str], index: int, paths: List[str]):
   image_regex = "!\[.*\]\(fig-\d+.jpg \".*\"\)"
   line = lines[index]
   # para cada imagem, adicionar um include graphics
   # ![Texto Alternativo](fig-0000.jpg "Legenda")
-  if re.match(image_regex, line):
+  line_string, count = re.subn(image_regex, '', line)
+  if count:
     parsed_string = line.split('(')[1]
     filename_and_caption = parsed_string.split('\"')
     figure_filename = filename_and_caption[0]
     figure_caption = filename_and_caption[1].split("\")")[0]
     figure_fullpath = f'{paths[3].split(".")[0] if len(paths) >= 3 else "figuras"}_figuras/{figure_filename}'.strip()
 
-    output_list.extend([
+    lines[index] = line_string
+
+    return [
       '\\begin{figure}[H]\n',
       '\t\\begin{center}\n',
       f'\t\t\\includegraphics[width=0.5\\textwidth]{{{figure_fullpath}}}\n',
-      f'\t\t\\caption{{{figure_caption}}}\n',
+      f'\t\t\\caption{{{figure_caption}}}\n' if len(figure_caption) > 1 else '',
       '\t\\end{center}\n',
       '\\end{figure}\n'
-    ])
+    ]
 
 
 # MUST IMPORT \usepackage{enumitem}
@@ -83,7 +86,7 @@ def convert_to_tex(filename: str):
   with open(preamble_filename) as file:
     lines = file.readlines()
     for index in range(len(lines) - 1):
-      if lines[index] == "\LARGE \\textbf{Prova Enade 2019\\Engenharia de Computação \\}":
+      if lines[index] == '\\LARGE \\textbf{Prova Enade 2019\\\\Engenharia de Computação \\\\}\n':
         lines[index] = document_title
     
     output_file.writelines(lines)
@@ -101,9 +104,14 @@ def convert_to_tex(filename: str):
     
     index = 0
     line = ""
+    image_to_add = []
     is_equation_open = False
+    is_add_image_pending = False
     while index < len(lines):
-      is_equation_open = parse_tex_string(lines, index, is_equation_open, paths, output_list)
+      is_equation_open, image_to_add = parse_tex_string(lines, index, is_equation_open, paths)
+      if image_to_add:
+        is_add_image_pending = True
+
       line = lines[index]
 
       # para cada marcação de questão, escrever um \question
@@ -125,10 +133,18 @@ def convert_to_tex(filename: str):
             index < (len(lines) - 2) and not re.match(alternative_regex, lines[index + 1]) and \
             not re.match(question_regex, lines[index + 1]):
           index += 1
-          is_equation_open = parse_tex_string(lines, index, is_equation_open, paths, output_list)
+          is_equation_open, image_to_add = parse_tex_string(lines, index, is_equation_open, paths)
           line = lines[index]
           if (line != '\n'):
             string_to_append += line
+
+          if image_to_add:
+            is_add_image_pending = False
+            string_to_append += ''.join(image_to_add)
+
+        if image_to_add:
+          is_add_image_pending = False
+          string_to_append += ''.join(image_to_add)
 
         # se a próxima linha é uma questão, fechar o enumerate
         if index < (len(lines) - 2) and re.match(question_regex, lines[index + 1]):
@@ -138,19 +154,23 @@ def convert_to_tex(filename: str):
           
         index += 1
         output_list.append(f"\t\t\\item {string_to_append}")
-
-        if should_close_enumerate:
-          should_close_enumerate = False
-          output_list.append("\n\t\\end{enumerate}\n\n")
       # caso não tenha marcação, apenas escrever diretamente
       else:
         if (line != '\n'):
           output_list.append(line)
+        
         index += 1
+      if should_close_enumerate:
+        should_close_enumerate = False
+        output_list.append("\n\t\\end{enumerate}\n\n")
+
+      if is_add_image_pending and image_to_add:
+        is_add_image_pending = False
+        output_list.extend(image_to_add)    
   
   if is_enumerate_open:
     is_enumerate_open = False
-    output_list.append("\n\t\\end{enumerate}\n\n")
+    output_list.append("\t\\end{enumerate}\n\n")
 
   output_list.append("\\end{questions}\n\n")
   output_list.append("\\end{document}\n")
