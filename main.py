@@ -1,10 +1,21 @@
 import re
 import sys
 from typing import List
+from enum import Enum
+
+class QuestionType(Enum):
+  NULL = 0
+  MULTIPLE_CHOICE = 1
+  TRUE_FALSE = 2
+  MATCHING = 3
+  SHORT_ANSWER = 4
+  ESSAY = 5
+
 
 def parse_tex_string(lines: List[str], index: int, is_equation_open: bool, 
                       paths: List[str]):
   escape_tex_special_symbols(lines, index)
+  parse_tex_line_breaks(lines, index)
   image_to_add = parse_tex_image(lines, index, paths)
   is_equation_open = parse_tex_equation(lines, index, is_equation_open)
   
@@ -66,6 +77,19 @@ def parse_tex_image(lines: List[str], index: int, paths: List[str]):
     ]
 
 
+def parse_tex_line_breaks(lines: List[str], index: int):
+  lines[index] = re.sub('<br/>', '\n', lines[index])
+
+
+def update_tex_question_title_with_type(last_question_index: int, output_list: List[str], question_type: QuestionType):
+  if question_type is QuestionType.MULTIPLE_CHOICE:
+    output_list[last_question_index] += f' $|$ \\textbf{{Objetiva}}'
+  elif question_type is QuestionType.ESSAY:
+    output_list[last_question_index] += f' $|$ \\textbf{{Dissertativa}})\n'
+  elif question_type is QuestionType.NULL and last_question_index != 0:
+    output_list[last_question_index] += ')\n'
+
+
 # MUST IMPORT \usepackage{enumitem}
 def convert_to_tex(filename: str):
   # equação -> $equation$
@@ -91,8 +115,8 @@ def convert_to_tex(filename: str):
     
     output_file.writelines(lines)
 
-  alternative_regex = "(-[a-e].)"
-  question_regex = "(#Q)\d+"
+  alternative_regex = '(-[a-e].)'
+  question_regex = '(#Q)\d+'
 
   should_close_enumerate = False
   is_enumerate_open = False
@@ -107,6 +131,8 @@ def convert_to_tex(filename: str):
     image_to_add = []
     is_equation_open = False
     is_add_image_pending = False
+    last_question_index = 0
+    last_question_type = QuestionType.NULL
     while index < len(lines):
       is_equation_open, image_to_add = parse_tex_string(lines, index, is_equation_open, paths)
       if image_to_add:
@@ -116,7 +142,10 @@ def convert_to_tex(filename: str):
 
       # para cada marcação de questão, escrever um \question
       if re.match(question_regex, line):
-        output_list.append(f"\\question (\\textbf{{{test_type}}}$|$\\textbf{{{test_course}}}-\\textbf{{{test_year}}}) ")
+        update_tex_question_title_with_type(last_question_index, output_list, last_question_type)
+        last_question_type = QuestionType.ESSAY
+        output_list.append(f"\\question (\\textbf{{{test_type}}} $|$ \\textbf{{{test_course}}}-\\textbf{{{test_year}}}")
+        last_question_index = len(output_list) - 1
         index += 1
       # para cada marcação de alternativa adicionar um item do enumerate
       elif re.match(alternative_regex, line):
@@ -124,6 +153,8 @@ def convert_to_tex(filename: str):
         if re.match("(-a.)", line):
           is_enumerate_open = True
           output_list.append("\t\\begin{enumerate}[label=\\alph*)]\n")
+          update_tex_question_title_with_type(last_question_index, output_list, QuestionType.MULTIPLE_CHOICE)
+          last_question_type = QuestionType.NULL
 
         string_to_append = ""
         # remove -a.
@@ -156,13 +187,13 @@ def convert_to_tex(filename: str):
         output_list.append(f"\t\t\\item {string_to_append}")
       # caso não tenha marcação, apenas escrever diretamente
       else:
-        if (line != '\n'):
+        if (line != ''):
           output_list.append(line)
         
         index += 1
       if should_close_enumerate:
         should_close_enumerate = False
-        output_list.append("\n\t\\end{enumerate}\n\n")
+        output_list.append("\t\\end{enumerate}\n\n")
 
       if is_add_image_pending and image_to_add:
         is_add_image_pending = False

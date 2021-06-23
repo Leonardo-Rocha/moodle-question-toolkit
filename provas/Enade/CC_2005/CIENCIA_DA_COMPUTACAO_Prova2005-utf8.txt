@@ -110,11 +110,7 @@ representada por:
 -c. ideologia e filosofia / educação superior.
 -d. ciência e escolaridade / educação técnica.
 -e. educação e cultura / educação assistemática.
-Laerte. O condomínio.
-Laerte. O condomínio.
 
-Colecção Roberto Marinho. Seis décadas da arte moderna
-brasileira. Lisboa: Fundação Calouste Gulbenkian, 1989. p. 53.
 #Q6
 ![La Vanguardia](fig-0005.jpg "La Vanguardia, 4/12/2004")
 
@@ -1379,24 +1375,25 @@ transfere R$ 100,00 da conta X
 para a conta Y. A partir dessas
 informações, julgue os itens que se
 seguem.
+
 I Se, durante a execução de T1,
 ocorrer uma falha depois da
 operação 3 e antes da operação
 6, e o sistema de banco de dados
 restabelecer o valor original
-de X, estará garantida a atomicidade de T1.
+de X, estará garantida a atomicidade de T1. <br/>
 II Se ocorrer uma falha de sistema após a transação T1 ser
 completada com sucesso, mas, ao ser reiniciado o sistema, o
 usuário que a tiver disparado for notificado da transferência
 de fundos e o sistema de banco de dados reconstruir as
 atualizações feitas pela transação, estará garantida a
-durabilidade de T1.
+durabilidade de T1. <br/>
 III Se outra transação, T2, que estiver sendo executada
 simultaneamente a T1, tentar executar a operação
 escrita(Y) depois de T1 ter executado a operação 4 e
 ainda não ter executado a operação 6, e o sistema de banco
 de dados impedir essa escrita, estará garantida a consistência
-de T1.
+de T1.<br/>
 Assinale a opção correta.
 -a. Apenas um item está certo.
 -b. Apenas os itens I e II estão certos.
