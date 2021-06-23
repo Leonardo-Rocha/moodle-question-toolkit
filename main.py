@@ -26,11 +26,22 @@ def parse_tex_string(lines: List[str], index: int, is_equation_open: bool,
 
 
 def parse_tex_special_symbols_and_inline_code(lines: List[str], index: int):
-  lines[index] = re.sub(r'\\(?P<first_char>[^_$()])', r'\\\\'+ '\\g<first_char>', lines[index])
+  # inline_code_regex = "\`(?P<code>.+)\`"
+  line = lines[index]
+  split_lines = line.split('`')
+  final_string = ''
+  # Inline `code` has `back-ticks around` it.
+  for _idx, line in enumerate(split_lines):
+    if _idx % 2 == 0:
+      line = re.sub(r'\\(?P<first_char>[^_$()])', r'\\\\'+ '\\g<first_char>', line)
+      line = re.sub("_", "\_", line)
+      line = re.sub("\$", "\$", line)
+    else:
+      line = f'\\mintinline{{sql}}{{{line}}}'
 
-  lines[index] = re.sub("_", "\_", lines[index])
+    final_string += line
 
-  lines[index] = re.sub("\$", "\$", lines[index])
+  lines[index] = final_string
 
 
 def parse_tex_equation(lines: List[str], index: int, is_equation_open: bool):
@@ -195,7 +206,7 @@ def convert_to_tex(filename: str):
             index < (len(lines) - 2) and not re.match(alternative_regex, lines[index + 1]) and \
             not re.match(question_regex, lines[index + 1]):
           index += 1
-          
+
           if image_to_add:
             is_add_image_pending = False
             string_to_append += ''.join(image_to_add)
