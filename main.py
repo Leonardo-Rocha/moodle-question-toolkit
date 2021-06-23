@@ -13,16 +13,19 @@ class QuestionType(Enum):
 
 
 def parse_tex_string(lines: List[str], index: int, is_equation_open: bool, 
-                      paths: List[str]):
-  escape_tex_special_symbols(lines, index)
+                      paths: List[str], is_code_block_open: bool):
+  new_is_code_block_open = parse_tex_code_blocks(lines, index, is_code_block_open)
+  if new_is_code_block_open or is_code_block_open:
+    return is_equation_open, None, new_is_code_block_open  
+  parse_tex_special_symbols_and_inline_code(lines, index)
   parse_tex_line_breaks(lines, index)
   image_to_add = parse_tex_image(lines, index, paths)
   is_equation_open = parse_tex_equation(lines, index, is_equation_open)
   
-  return is_equation_open, image_to_add
+  return is_equation_open, image_to_add, new_is_code_block_open
 
 
-def escape_tex_special_symbols(lines: List[str], index: int):
+def parse_tex_special_symbols_and_inline_code(lines: List[str], index: int):
   lines[index] = re.sub(r'\\(?P<first_char>[^_$()])', r'\\\\'+ '\\g<first_char>', lines[index])
 
   lines[index] = re.sub("_", "\_", lines[index])
@@ -81,6 +84,34 @@ def parse_tex_line_breaks(lines: List[str], index: int):
   lines[index] = re.sub('<br/>', '\n', lines[index])
 
 
+def parse_tex_code_blocks(lines: List[str], index: int, is_code_block_open: bool):
+  start_code_block_regex = "\`\`\`(?P<language_highlight>\w*)"
+
+  if not is_code_block_open:
+    line = lines[index]
+    code_block_match = re.match(start_code_block_regex, line)
+    if code_block_match:
+      language_highlight_group = code_block_match.group('language_highlight')
+      language_highlight = language_highlight_group if len(language_highlight_group) > 0 else 'javascript'
+      output, count = re.subn(start_code_block_regex, f'\\\\begin{{minted}}{{{language_highlight}}}', line)
+      if count > 0:
+        is_code_block_open = True 
+        lines[index] = output
+
+  if is_code_block_open:
+    line = lines[index]
+    split_list = line.split("```")
+    backslash_parsed_string = re.sub(r'\\\\', r'\\', split_list[0])
+    
+    if len(split_list) > 1:
+      backslash_parsed_string += f'\\end{{minted}} {split_list[1]}'
+      is_code_block_open = False
+
+    lines[index] = backslash_parsed_string
+
+  return is_code_block_open
+
+
 def update_tex_question_title_with_type(last_question_index: int, output_list: List[str], question_type: QuestionType):
   if question_type is QuestionType.MULTIPLE_CHOICE:
     output_list[last_question_index] += f' $|$ \\textbf{{Objetiva}}'
@@ -92,7 +123,6 @@ def update_tex_question_title_with_type(last_question_index: int, output_list: L
 
 # MUST IMPORT \usepackage{enumitem}
 def convert_to_tex(filename: str):
-  # equação -> $equation$
   print("Converting to TeX...")
   
   preamble_filename = 'preamble.tex'
@@ -130,11 +160,12 @@ def convert_to_tex(filename: str):
     line = ""
     image_to_add = []
     is_equation_open = False
+    is_code_block_open = False
     is_add_image_pending = False
     last_question_index = 0
     last_question_type = QuestionType.NULL
     while index < len(lines):
-      is_equation_open, image_to_add = parse_tex_string(lines, index, is_equation_open, paths)
+      is_equation_open, image_to_add, is_code_block_open = parse_tex_string(lines, index, is_equation_open, paths, is_code_block_open)
       if image_to_add:
         is_add_image_pending = True
 
@@ -164,7 +195,7 @@ def convert_to_tex(filename: str):
             index < (len(lines) - 2) and not re.match(alternative_regex, lines[index + 1]) and \
             not re.match(question_regex, lines[index + 1]):
           index += 1
-          is_equation_open, image_to_add = parse_tex_string(lines, index, is_equation_open, paths)
+          is_equation_open, image_to_add, is_code_block_open = parse_tex_string(lines, index, is_equation_open, paths, is_code_block_open)
           line = lines[index]
           if (line != '\n'):
             string_to_append += line
@@ -189,8 +220,8 @@ def convert_to_tex(filename: str):
       else:
         if (line != ''):
           output_list.append(line)
-        
         index += 1
+
       if should_close_enumerate:
         should_close_enumerate = False
         output_list.append("\t\\end{enumerate}\n\n")

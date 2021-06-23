@@ -14,6 +14,7 @@
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{caption}
+\usepackage{minted}
 
 \captionsetup[figure]{labelformat=empty}
 
@@ -2323,22 +2324,24 @@ Assinale a opção correta.
 \question (\textbf{Enade} $|$ \textbf{CC}-\textbf{2005} $|$ \textbf{Objetiva})
 Considere o seguinte script SQL de criação de um banco de
 dados.
+\begin{minted}{sql}
 CREATE TABLE PECAS (CODIGO NUMERIC(5) NOT NULL,
 DESCRICAO VARCHAR(20) NOT NULL,
 ESTOQUE NUMERIC(5) NOT NULL,
 PRIMARY KEY(CODIGO));
 CREATE TABLE FORNECEDORES
-(COD\_FORN NUMERIC(3) NOT NULL,
+(COD_FORN NUMERIC(3) NOT NULL,
 NOME VARCHAR(30) NOT NULL,
-PRIMARY KEY(COD\_FORN));
+PRIMARY KEY(COD_FORN));
 CREATE TABLE FORNECIMENTOS
-(COD\_PECA NUMERIC(5) NOT NULL,
-COD\_FORN NUMERIC(3) NOT NULL,
+(COD_PECA NUMERIC(5) NOT NULL,
+COD_FORN NUMERIC(3) NOT NULL,
 QUANTIDADE NUMERIC(4) NOT NULL,
-PRIMARY KEY(COD\_PECA, COD\_FORN),
-FOREIGN KEY (COD\_PECA) REFERENCES PECAS,
-FOREIGN KEY (COD\_FORN) REFERENCES
+PRIMARY KEY(COD_PECA, COD_FORN),
+FOREIGN KEY (COD_PECA) REFERENCES PECAS,
+FOREIGN KEY (COD_FORN) REFERENCES
 FORNECEDORES);
+\end{minted} 
 A partir desse script, assinale a opção que apresenta comando
 SQL que permite obter uma lista que contenha o nome de cada
 fornecedor que tenha fornecido alguma peça, o código da peça
