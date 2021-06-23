@@ -246,6 +246,8 @@ def convert_to_tex(filename: str):
       if is_add_image_pending and image_to_add:
         is_add_image_pending = False
         output_list.extend(image_to_add)    
+        
+    update_tex_question_title_with_type(last_question_index, output_list, last_question_type)
   
   if is_enumerate_open:
     is_enumerate_open = False
