@@ -195,7 +195,13 @@ def convert_to_tex(filename: str):
             index < (len(lines) - 2) and not re.match(alternative_regex, lines[index + 1]) and \
             not re.match(question_regex, lines[index + 1]):
           index += 1
+          
+          if image_to_add:
+            is_add_image_pending = False
+            string_to_append += ''.join(image_to_add)
+
           is_equation_open, image_to_add, is_code_block_open = parse_tex_string(lines, index, is_equation_open, paths, is_code_block_open)
+
           line = lines[index]
           if (line != '\n'):
             string_to_append += line
