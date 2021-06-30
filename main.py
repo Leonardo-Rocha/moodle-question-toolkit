@@ -100,11 +100,14 @@ def parse_tex_code_blocks(lines: List[str], index: int, is_code_block_open: bool
 
   if not is_code_block_open:
     line = lines[index]
-    code_block_match = re.match(start_code_block_regex, line)
-    if code_block_match:
+    split_list = line.split("```")
+    if len(split_list) > 1:
+      code_line = "```" + split_list[1]
+      code_block_match = re.match(start_code_block_regex, code_line) 
       language_highlight_group = code_block_match.group('language_highlight')
       language_highlight = language_highlight_group if len(language_highlight_group) > 0 else 'javascript'
-      output, count = re.subn(start_code_block_regex, f'\\\\begin{{minted}}{{{language_highlight}}}', line)
+      output, count = re.subn(start_code_block_regex, f'\\\\begin{{minted}}{{{language_highlight}}}', code_line)
+      output = split_list[0] + output
       if count > 0:
         is_code_block_open = True 
         lines[index] = output
