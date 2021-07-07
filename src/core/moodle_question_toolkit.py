@@ -1,5 +1,6 @@
 import re
 import sys
+import os
 from typing import List
 from enum import Enum
 
@@ -136,7 +137,7 @@ def update_tex_question_title_with_type(last_question_index: int, output_list: L
 
 
 # MUST IMPORT \usepackage{enumitem}
-def convert_to_tex(filename: str):
+def MD_to_tex(filename: str):
   print("Converting to TeX...")
   
   preamble_filename = 'preamble.tex'
@@ -263,24 +264,15 @@ def convert_to_tex(filename: str):
   output_file.close()
 
 
-def convert_to_GIFT():
-  print("Converting to GIFT...")
+def MD_to_GIFT():
+  print("GIFT NOT IMPLEMENTED YET.")
+
 
 def is_64bits():
   return sys.maxsize > 2**32
   
-def main():
-  # test = "provas/Enade/CC_2005/CIENCIA_DA_COMPUTACAO_Prova2005.pdf"
 
-  # TODO: fazer download da versão mais recente do xpdf-tools pelo site.
-  #os.system(f"./xpdf-tools-linux-4.03/bin64/pdftotext -raw {test}")
+def pdf_to_text(filename):
+  os.system(f"./xpdf-tools-linux-4.03/bin64/pdftotext -raw {filename}")
   #os.system(f"mkdir $PWD/provas/Enade/CC_2005/CIENCIA_DA_COMPUTACAO_Prova2005_figuras")
   #os.system(f"./xpdf-tools-linux-4.03/bin64/pdfimages -j {test} $PWD/provas/Enade/CC_2005/CIENCIA_DA_COMPUTACAO_Prova2005_figuras/fig")
-
-  markdown_file_path = "provas/Enade/CC_2005/CIENCIA_DA_COMPUTACAO_Prova2005-utf8.txt"
-
-  convert_to_tex(markdown_file_path)
-
-
-if __name__ == "__main__":
-  main()
