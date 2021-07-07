@@ -10,16 +10,12 @@ Uma vez com a marcação os arquivos txt podem ser convertidos para outros forma
 
 ## TODO List : Objetivos de Implementação
 
-[x]  Conversão de Equações
+[x]  Conversão para *.tex*
 
-[ ]  Integração com as Imagens
-
-[ ]  Conversão para *.tex*
+[ ]  Automatização da marcação de Imagens
 
 [ ]  Conversão para *GIFT*
 
-[ ]  Interface Gráfica
-
-[ ]  Automação da marcação
+[ ]  Automatização da marcação
 
 [ ]  Multithreading
